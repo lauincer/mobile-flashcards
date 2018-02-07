@@ -4,12 +4,15 @@ import { Ionicons } from '@expo/vector-icons';
 
 const stubDecks = [
     {
+      key: '1',
       title: 'Deck #1'
     },
     {
+      key: '2',
       title: 'Deck #2'
     },
     {
+      key: '3',
       title: 'Deck #3'
     }
 ]
@@ -21,7 +24,7 @@ export default class DeckList extends Component {
         <Text>
           {item.title}
         </Text>
-        <Ionicons name='ios-pizza' color='red' size='200' />
+        <Ionicons name='ios-pizza' color='red' size={100} />
       </View>
     )
   }
