@@ -2,29 +2,42 @@ import React, { Component } from 'react'
 import { View, Text, FlatList, StyleSheet } from 'react-native'
 import { Ionicons } from '@expo/vector-icons';
 
-const stubDecks = [
-    {
-      key: '1',
-      title: 'Deck #1'
-    },
-    {
-      key: '2',
-      title: 'Deck #2'
-    },
-    {
-      key: '3',
-      title: 'Deck #3'
-    }
-]
+const stubDB = {
+  React: {
+    title: 'React',
+    questions: [
+      {
+        question: 'What is React?',
+        answer: 'A library for managing user interfaces'
+      },
+      {
+        question: 'Where do you make Ajax requests in React?',
+        answer: 'The componentDidMount lifecycle event'
+      }
+    ]
+  },
+  JavaScript: {
+    title: 'JavaScript',
+    questions: [
+      {
+        question: 'What is a closure?',
+        answer: 'The combination of a function and the lexical environment within which that function was declared.'
+      }
+    ]
+  }
+};
 
 export default class DeckList extends Component {
   renderItem = ({item}) => {
     return (
-      <View>
-        <Text>
+      <View style={styles.deck}>
+        <Text style={styles.deckTitle}>
           {item.title}
         </Text>
-        <Ionicons name='ios-pizza' color='red' size={100} />
+        <Text style={styles.cardCount}>
+          {item.questions.length} {item.questions.length === 1 ? 'Card' : 'Cards'}
+        </Text>
+        {/*<Ionicons name='ios-pizza' color='red' size={100} />*/}
       </View>
     )
   }
@@ -32,9 +45,11 @@ export default class DeckList extends Component {
   render() {
     return (
       <View>
-        <Text>Deck List (first card list)</Text>
+        <Text>
+          Deck List (first card list)
+        </Text>
         <FlatList
-          data={stubDecks}
+          data={Object.values(stubDB)}
           renderItem={this.renderItem}
         />
       </View>
@@ -47,5 +62,20 @@ const styles = StyleSheet.create({
     backgroundColor: 'red',
     borderRadius: 5,
     padding: 10
+  },
+  deck: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingTop: 50,
+    paddingBottom: 50,
+    borderBottomWidth: 1
+  },
+  deckTitle: {
+    fontSize: 30,
+    marginBottom: 10
+  },
+  cardCount: {
+    color: '#666',
+    fontSize: 16
   }
 })

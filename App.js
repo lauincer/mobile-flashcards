@@ -2,8 +2,10 @@ import React from 'react';
 import { StyleSheet, Text, View, FlatList } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import Card from './components/Card'
+import Deck from './components/Deck'
 import DeckList from './components/DeckList'
 import DeckCreate from './components/DeckCreate'
+import Quiz from './components/Quiz'
 // import { StackNavigator } from 'react-navigation'
 
 export default class App extends React.Component {
@@ -16,7 +18,7 @@ export default class App extends React.Component {
         <Text>Shake your phone to open the developer menu.</Text>
         <Card />
         <DeckCreate />*/}
-        <DeckList />
+        <DeckCreate />
       </View>
     );
   }
