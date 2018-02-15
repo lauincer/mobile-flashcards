@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { View, Text, FlatList, StyleSheet } from 'react-native'
-import { Ionicons } from '@expo/vector-icons';
 
 const stubDB = {
   React: {
@@ -37,7 +36,6 @@ export default class DeckList extends Component {
         <Text style={styles.cardCount}>
           {item.questions.length} {item.questions.length === 1 ? 'Card' : 'Cards'}
         </Text>
-        {/*<Ionicons name='ios-pizza' color='red' size={100} />*/}
       </View>
     )
   }

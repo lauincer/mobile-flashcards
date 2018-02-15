@@ -1,57 +1,64 @@
 import React, { Component } from 'react'
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native'
-//import { getMetricMetaInfo } from '../utils/helpers'
 
-function SubmitBtn ({ onPress }) {
+function ResponseButton ({ correct, onPress }) {
   return (
     <TouchableOpacity
-      style={styles.btn}
+      style={[styles.btn, {backgroundColor: correct ? 'green' : 'red'}]}
       onPress={onPress}>
-        <Text>SUBMIT</Text>
+        <Text style={styles.btnText}>{correct ? 'Correct' : 'Incorrect'}</Text>
     </TouchableOpacity>
   )
 }
 
 export default class Card extends Component {
-  state = {
-    run: 0,
-    bike: 0,
-    swim: 0,
-    sleep: 0,
-    eat: 0,
-  }
-
-  increment = (metric) => {
-    const { max, step } = getMetricMetaInfo(metric)
-
-    this.setState((state) => {
-      const count = state[metric] + step
-
-      return {
-        ...state,
-        [metric]: count > max ? max : count,
-      }
-    })
-  }
-
-  submit = () => {
-    alert('Submit');
-  }
-
   render() {
     return (
-      <View>
-        <Text>Card</Text>
-        <SubmitBtn onPress={this.submit} />
+      <View style={styles.questionContainer}>
+        <View style={styles.question}>
+          <Text style={styles.questionText}>
+            Does React Native work with Android?
+          </Text>
+          <Text style={styles.answer}>
+            Answer
+          </Text>
+        </View>
+        <ResponseButton correct={true} />
+        <ResponseButton correct={false} />
       </View>
     )
   }
 }
 
 const styles = StyleSheet.create({
+  questionContainer: {
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  question: {
+    alignItems: 'center',
+    paddingTop: 50,
+    paddingBottom: 150
+  },
+  questionText: {
+    fontSize: 30,
+    marginBottom: 10,
+    textAlign: 'center',
+    width: 300
+  },
+  answer: {
+    color: 'red',
+    fontWeight: 'bold',
+    fontSize: 16
+  },
   btn: {
-    backgroundColor: 'red',
     borderRadius: 5,
-    padding: 10
+    padding: 10,
+    width: 150,
+    marginBottom: 10,
+    alignItems: 'center'
+  },
+  btnText: {
+    color: 'white'
   }
 })

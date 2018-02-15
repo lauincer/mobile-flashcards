@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, Text, FlatList, TouchableOpacity, StyleSheet } from 'react-native'
+import { View, Text, TouchableOpacity, StyleSheet } from 'react-native'
 
 function AddCardBtn ({ onPress }) {
   return (
