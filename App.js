@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View, FlatList } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+import { Ionicons, MaterialIcons, MaterialCommunityIcons } from '@expo/vector-icons';
 import Card from './components/Card'
 import CardCreate from './components/CardCreate'
 import Deck from './components/Deck'
@@ -12,10 +12,18 @@ import { TabNavigator } from 'react-navigation';
 
 const Tabs = TabNavigator({
   DeckList: {
-    screen: DeckList
+    screen: DeckList,
+    navigationOptions: {
+       tabBarLabel: 'DECKS',
+       tabBarIcon: ({ tintColor }) => <MaterialCommunityIcons name='cards' size={25} color={tintColor} />
+    },
   },
   DeckCreate: {
-    screen: DeckCreate
+    screen: DeckCreate,
+    navigationOptions: {
+       tabBarLabel: 'NEW DECK',
+       tabBarIcon: ({ tintColor }) => <MaterialIcons name='library-add' size={25} color={tintColor} />
+    },
   },
 });
 
