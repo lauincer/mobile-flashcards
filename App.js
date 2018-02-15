@@ -2,11 +2,38 @@ import React from 'react';
 import { StyleSheet, Text, View, FlatList } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import Card from './components/Card'
+import CardCreate from './components/CardCreate'
 import Deck from './components/Deck'
 import DeckList from './components/DeckList'
 import DeckCreate from './components/DeckCreate'
 import Quiz from './components/Quiz'
-// import { StackNavigator } from 'react-navigation'
+import { TabNavigator } from 'react-navigation';
+// import { StackNavigator } from 'react-navigation';
+
+const Tabs = TabNavigator({
+  DeckList: {
+    screen: DeckList
+  },
+  DeckCreate: {
+    screen: DeckCreate
+  },
+});
+
+// const Stack = StackNavigator({
+//   DeckList: {
+//     screen: DeckList
+//   },
+//   Deck: {
+//     screen: Deck
+//   },
+//   CardCreate: {
+//     screen: CardCreate
+//   },
+//   Quiz: {
+//     screen: Quiz
+//   }
+// })
+
 
 export default class App extends React.Component {
   render() {
@@ -18,7 +45,7 @@ export default class App extends React.Component {
         <Text>Shake your phone to open the developer menu.</Text>
         <Card />
         <DeckCreate />*/}
-        <DeckCreate />
+        <Tabs />
       </View>
     );
   }
