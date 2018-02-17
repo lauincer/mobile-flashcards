@@ -27,14 +27,20 @@ export default class Deck extends Component {
       <View style={styles.deckContainer}>
         <View style={styles.deck}>
           <Text style={styles.deckTitle}>
-            React
+            React - {this.props.navigation.state.params.deckId}
           </Text>
           <Text style={styles.cardCount}>
             0 Cards
           </Text>
         </View>
-        <AddCardBtn />
-        <StartQuizBtn />
+        <AddCardBtn onPress={() => this.props.navigation.navigate(
+          'CardCreate',
+          { deckId: 'test' }
+        )} />
+        <StartQuizBtn onPress={() => this.props.navigation.navigate(
+          'Quiz',
+          { deckId: 'test' }
+        )} />
       </View>
     )
   }

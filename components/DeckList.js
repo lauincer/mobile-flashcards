@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, Text, FlatList, StyleSheet } from 'react-native'
+import { View, Text, FlatList, TouchableOpacity, StyleSheet } from 'react-native'
 
 const stubDB = {
   React: {
@@ -29,23 +29,23 @@ const stubDB = {
 export default class DeckList extends Component {
   renderItem = ({item}) => {
     return (
-      <View style={styles.deck}>
+      <TouchableOpacity style={styles.deck} onPress={() => this.props.navigation.navigate(
+        'Deck',
+        { deckId: 'test' }
+      )}>
         <Text style={styles.deckTitle}>
           {item.title}
         </Text>
         <Text style={styles.cardCount}>
           {item.questions.length} {item.questions.length === 1 ? 'Card' : 'Cards'}
         </Text>
-      </View>
+      </TouchableOpacity>
     )
   }
 
   render() {
     return (
       <View>
-        <Text>
-          Deck List (first card list)
-        </Text>
         <FlatList
           data={Object.values(stubDB)}
           renderItem={this.renderItem}

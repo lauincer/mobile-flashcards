@@ -7,8 +7,7 @@ import Deck from './components/Deck'
 import DeckList from './components/DeckList'
 import DeckCreate from './components/DeckCreate'
 import Quiz from './components/Quiz'
-import { TabNavigator } from 'react-navigation';
-// import { StackNavigator } from 'react-navigation';
+import { TabNavigator, StackNavigator } from 'react-navigation';
 
 const Tabs = TabNavigator({
   DeckList: {
@@ -27,20 +26,35 @@ const Tabs = TabNavigator({
   },
 });
 
-// const Stack = StackNavigator({
-//   DeckList: {
-//     screen: DeckList
-//   },
-//   Deck: {
-//     screen: Deck
-//   },
-//   CardCreate: {
-//     screen: CardCreate
-//   },
-//   Quiz: {
-//     screen: Quiz
-//   }
-// })
+const MainNav = StackNavigator({
+  Home: {
+    screen: Tabs
+  },
+  DeckList: {
+    screen: DeckList,
+    navigationOptions: {
+      title: 'Deck List'
+    }
+  },
+  Deck: {
+    screen: Deck,
+    navigationOptions: {
+      title: 'Deck'
+    }
+  },
+  CardCreate: {
+    screen: CardCreate,
+    navigationOptions: {
+      title: 'Add Card'
+    }
+  },
+  Quiz: {
+    screen: Quiz,
+    navigationOptions: {
+      title: 'Quiz'
+    }
+  }
+})
 
 
 export default class App extends React.Component {
@@ -53,7 +67,7 @@ export default class App extends React.Component {
         <Text>Shake your phone to open the developer menu.</Text>
         <Card />
         <DeckCreate />*/}
-        <Tabs />
+        <MainNav />
       </View>
     );
   }
