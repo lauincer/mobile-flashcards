@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native'
+import { addCardToDeck } from '../utils/api';
 
 function SubmitButton ({ onPress }) {
   return (
@@ -17,10 +18,20 @@ export default class CardCreate extends Component {
     answer: ''
   }
 
-  handleTextChange = (input) => {
-    this.setState({
-      deckName: input
-    })
+  submit(question, answer) {
+    const deck = this.props.navigation.state.params.deck;
+
+    const card = {
+      question,
+      answer
+    }
+
+    addCardToDeck(deck.title, card);
+
+    this.props.navigation.navigate(
+      'Deck',
+      { deck }
+    );
   }
 
   render() {
@@ -31,16 +42,26 @@ export default class CardCreate extends Component {
         <TextInput
           value={question}
           style={styles.input}
-          onChangeText={this.handleTextChange}
+          onChangeText={(input) =>
+            this.setState({
+              question: input
+            })
+          }
           placeholder="question"
         />
         <TextInput
           value={answer}
           style={styles.input}
-          onChangeText={this.handleTextChange}
+          onChangeText={(input) =>
+            this.setState({
+              answer: input
+            })
+          }
           placeholder="answer"
         />
-        <SubmitButton />
+        <SubmitButton onPress={() =>
+          this.submit(question, answer)
+        } />
       </View>
     )
   }
