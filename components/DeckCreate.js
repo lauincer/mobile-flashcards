@@ -1,5 +1,6 @@
-import React, { Component } from 'react'
-import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native'
+import React, { Component } from 'react';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
+import { saveDeck } from '../utils/api';
 
 function SubmitButton ({ onPress }) {
   return (
@@ -22,6 +23,13 @@ export default class DeckCreate extends Component {
     })
   }
 
+  submit(deckName) {
+    saveDeck(deckName);
+    this.props.navigation.navigate(
+      'DeckList'
+    );
+  }
+
   render() {
     const { deckName } = this.state;
 
@@ -36,7 +44,9 @@ export default class DeckCreate extends Component {
           style={styles.input}
           onChangeText={this.handleTextChange}
         />
-        <SubmitButton />
+        <SubmitButton onPress={() =>
+          this.submit(deckName)
+        } />
       </View>
     )
   }

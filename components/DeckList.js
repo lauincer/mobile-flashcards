@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { View, Text, FlatList, TouchableOpacity, StyleSheet } from 'react-native'
+import { getDecks } from '../utils/api';
 
 const stubDB = {
   React: {
@@ -27,6 +28,18 @@ const stubDB = {
 };
 
 export default class DeckList extends Component {
+  state = {
+    decks: []
+  }
+
+  componentDidMount() {
+    getDecks().then((results) =>
+      this.setState({
+        decks: results
+      })
+    )
+  }
+
   renderItem = ({item}) => {
     return (
       <TouchableOpacity style={styles.deck} onPress={() => this.props.navigation.navigate(
@@ -37,17 +50,19 @@ export default class DeckList extends Component {
           {item.title}
         </Text>
         <Text style={styles.cardCount}>
-          {item.questions.length} {item.questions.length === 1 ? 'Card' : 'Cards'}
+          {item.cards.length} {item.cards.length === 1 ? 'Card' : 'Cards'}
         </Text>
       </TouchableOpacity>
     )
   }
 
   render() {
+    const { decks } = this.state;
+
     return (
       <View>
         <FlatList
-          data={Object.values(stubDB)}
+          data={decks}
           renderItem={this.renderItem}
         />
       </View>

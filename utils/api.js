@@ -1,6 +1,5 @@
 import { AsyncStorage } from 'react-native';
-import { generateId } from 'helpers';
-const DECKS_STORAGE_KEY = 'mobileFlashcards'
+const DECKS_STORAGE_KEY = 'mobileFlashcards';
 
 // return all of the decks along with their titles, questions, and answers.
 export function getDecks() {
@@ -12,11 +11,10 @@ export function getDecks() {
 }
 
 // take in a single title argument and add it to the decks.
-export function saveDeckTitle(id, title) {
+export function saveDeck(title) {
   return AsyncStorage.getItem(DECKS_STORAGE_KEY)
     .then((results) => {
         const newDeck = {
-            id,
             title,
             cards: []
         }
