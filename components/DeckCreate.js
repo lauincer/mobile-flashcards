@@ -1,16 +1,7 @@
 import React, { Component } from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, TextInput, StyleSheet } from 'react-native';
+import SubmitButton from './SubmitButton';
 import { saveDeck } from '../utils/api';
-
-function SubmitButton ({ onPress }) {
-  return (
-    <TouchableOpacity
-      style={styles.btn}
-      onPress={onPress}>
-        <Text style={styles.btnText}>Submit</Text>
-    </TouchableOpacity>
-  )
-}
 
 export default class DeckCreate extends Component {
   state = {
@@ -63,16 +54,6 @@ const styles = StyleSheet.create({
     marginBottom: 40,
     textAlign: 'center',
     width: 300
-  },
-  btn: {
-    backgroundColor: 'black',
-    borderRadius: 5,
-    padding: 10,
-    width: 100
-  },
-  btnText: {
-    color: 'white',
-    textAlign: 'center'
   },
   input: {
     width: 300,
