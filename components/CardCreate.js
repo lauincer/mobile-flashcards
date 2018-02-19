@@ -13,8 +13,8 @@ function SubmitButton ({ onPress }) {
 
 export default class CardCreate extends Component {
   state = {
-    question: 'question',
-    answer: 'answer'
+    question: '',
+    answer: ''
   }
 
   handleTextChange = (input) => {
@@ -32,11 +32,13 @@ export default class CardCreate extends Component {
           value={question}
           style={styles.input}
           onChangeText={this.handleTextChange}
+          placeholder="question"
         />
         <TextInput
           value={answer}
           style={styles.input}
           onChangeText={this.handleTextChange}
+          placeholder="answer"
         />
         <SubmitButton />
       </View>

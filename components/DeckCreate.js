@@ -13,7 +13,7 @@ function SubmitButton ({ onPress }) {
 
 export default class DeckCreate extends Component {
   state = {
-    deckName: 'name'
+    deckName: ''
   }
 
   handleTextChange = (input) => {
@@ -32,6 +32,7 @@ export default class DeckCreate extends Component {
         </Text>
         <TextInput
           value={deckName}
+          placeholder="name"
           style={styles.input}
           onChangeText={this.handleTextChange}
         />
