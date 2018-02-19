@@ -15,10 +15,12 @@ export default class DeckCreate extends Component {
   }
 
   submit(deckName) {
-    saveDeck(deckName);
-    this.props.navigation.navigate(
-      'DeckList'
-    );
+    if (deckName) {
+      saveDeck(deckName);
+      this.props.navigation.navigate(
+        'DeckList'
+      );
+    }
   }
 
   render() {

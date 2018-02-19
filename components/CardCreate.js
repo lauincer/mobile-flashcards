@@ -17,12 +17,14 @@ export default class CardCreate extends Component {
       answer
     }
 
-    addCardToDeck(deck.title, card);
+    if (question && answer) {
+      addCardToDeck(deck.title, card);
 
-    this.props.navigation.navigate(
-      'Deck',
-      { deck }
-    );
+      this.props.navigation.navigate(
+        'Deck',
+        { deck }
+      );
+    }
   }
 
   render() {
