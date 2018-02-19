@@ -59,8 +59,7 @@ const MainNav = StackNavigator({
 
 
 export default class App extends React.Component {
-  constructor() {
-      super();
+  componentDidMount() {
       setLocalNotification();
   }
 

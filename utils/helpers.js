@@ -7,6 +7,11 @@ export function generateId() {
   return 'id-' + Math.random().toString(36).substr(2, 16);
 };
 
+export function clearLocalNotification () {
+  return AsyncStorage.removeItem(NOTIFICATION_KEY)
+    .then(Notifications.cancelAllScheduledNotificationsAsync)
+}
+
 function createNotification () {
   return {
     title: 'Time to study!',
