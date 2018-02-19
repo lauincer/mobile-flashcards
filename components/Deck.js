@@ -23,23 +23,25 @@ function StartQuizBtn ({ onPress }) {
 
 export default class Deck extends Component {
   render() {
+    const deck = this.props.navigation.state.params.deck;
+
     return (
       <View style={styles.deckContainer}>
         <View style={styles.deck}>
           <Text style={styles.deckTitle}>
-            React - {this.props.navigation.state.params.deckId}
+            {deck.title}
           </Text>
           <Text style={styles.cardCount}>
-            0 Cards
+            {deck.cards.length} Cards
           </Text>
         </View>
         <AddCardBtn onPress={() => this.props.navigation.navigate(
           'CardCreate',
-          { deckId: 'test' }
+          { deck }
         )} />
         <StartQuizBtn onPress={() => this.props.navigation.navigate(
           'Quiz',
-          { deckId: 'test' }
+          { deck }
         )} />
       </View>
     )

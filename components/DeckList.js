@@ -33,6 +33,10 @@ export default class DeckList extends Component {
   }
 
   componentDidMount() {
+    this.getDecks();
+  }
+
+  getDecks = () => {
     getDecks().then((results) =>
       this.setState({
         decks: results
@@ -44,7 +48,7 @@ export default class DeckList extends Component {
     return (
       <TouchableOpacity style={styles.deck} onPress={() => this.props.navigation.navigate(
         'Deck',
-        { deckId: 'test' }
+        { deck: item }
       )}>
         <Text style={styles.deckTitle}>
           {item.title}
