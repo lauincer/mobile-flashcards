@@ -1,5 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View, FlatList } from 'react-native';
+import { TabNavigator, StackNavigator } from 'react-navigation';
 import { Ionicons, MaterialIcons, MaterialCommunityIcons } from '@expo/vector-icons';
 import Card from './components/Card'
 import CardCreate from './components/CardCreate'
@@ -7,7 +8,7 @@ import Deck from './components/Deck'
 import DeckList from './components/DeckList'
 import DeckCreate from './components/DeckCreate'
 import Quiz from './components/Quiz'
-import { TabNavigator, StackNavigator } from 'react-navigation';
+import { setLocalNotification } from './utils/helpers'
 
 const Tabs = TabNavigator({
   DeckList: {
@@ -58,6 +59,11 @@ const MainNav = StackNavigator({
 
 
 export default class App extends React.Component {
+  constructor() {
+      super();
+      setLocalNotification();
+  }
+
   render() {
     return (
       <View style={styles.container}>

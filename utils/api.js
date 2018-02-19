@@ -1,5 +1,6 @@
 import { AsyncStorage } from 'react-native';
-const DECKS_STORAGE_KEY = 'mobileFlashcards';
+
+const DECKS_STORAGE_KEY = 'MobileFlashcards:decks';
 
 // return all of the decks along with their titles, questions, and answers.
 export function getDecks() {
