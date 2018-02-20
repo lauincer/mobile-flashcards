@@ -12,9 +12,11 @@ export default class Quiz extends Component {
   //   .then(setLocalNotification)
 
   render() {
+    const deck = this.props.navigation.state.params.deck;
+
     return (
       <View style={styles.container}>
-          <Card />
+        <Card card={deck.cards[0]}/>
       </View>
     )
   }

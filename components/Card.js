@@ -13,11 +13,13 @@ function ResponseButton ({ correct, onPress }) {
 
 export default class Card extends Component {
   render() {
+    const { card } = this.props;
+
     return (
       <View style={styles.questionContainer}>
         <View style={styles.question}>
           <Text style={styles.questionText}>
-            Does React Native work with Android?
+            {card.question}
           </Text>
           <Text style={styles.answer}>
             Answer
