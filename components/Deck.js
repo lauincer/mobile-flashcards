@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native'
+import { getDeck } from '../utils/api';
 
 function AddCardBtn ({ onPress }) {
   return (
@@ -22,8 +23,22 @@ function StartQuizBtn ({ onPress }) {
 }
 
 export default class Deck extends Component {
-  render() {
+  state = {
+    deck: null
+  }
+
+  onGoBack = () => {
     const deck = this.props.navigation.state.params.deck;
+
+    getDeck(deck.id).then((result) =>
+      this.setState({
+        deck: result
+      })
+    )
+  }
+
+  render() {
+    const deck = this.state.deck || this.props.navigation.state.params.deck;
 
     return (
       <View style={styles.deckContainer}>
@@ -37,7 +52,10 @@ export default class Deck extends Component {
         </View>
         <AddCardBtn onPress={() => this.props.navigation.navigate(
           'CardCreate',
-          { deck }
+          {
+            deck,
+            onGoBack: this.onGoBack
+           }
         )} />
         <StartQuizBtn onPress={() => this.props.navigation.navigate(
           'Quiz',
