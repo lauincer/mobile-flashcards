@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, TextInput, StyleSheet } from 'react-native';
+import { View, Text, TextInput, KeyboardAvoidingView, StyleSheet } from 'react-native';
 import SubmitButton from './SubmitButton';
 import { saveDeck } from '../utils/api';
 
@@ -27,7 +27,7 @@ export default class DeckCreate extends Component {
     const { deckName } = this.state;
 
     return (
-      <View style={styles.container}>
+      <KeyboardAvoidingView behavior='padding' style={styles.container}>
         <Text style={styles.text}>
           What is the title of your new deck?
         </Text>
@@ -40,7 +40,7 @@ export default class DeckCreate extends Component {
         <SubmitButton onPress={() =>
           this.submit(deckName)
         } />
-      </View>
+      </KeyboardAvoidingView>
     )
   }
 }
