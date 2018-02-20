@@ -64,11 +64,16 @@ export default class DeckList extends Component {
     const { decks } = this.state;
 
     return (
-      <View>
-        <FlatList
-          data={decks}
-          renderItem={this.renderItem}
-        />
+      <View style={decks.length === 0 ? styles.textContainer : null}>
+        {decks.length === 0 &&
+          <Text style={styles.noDecksText}>No decks</Text>
+        }
+        {decks.length > 0 &&
+          <FlatList
+            data={decks}
+            renderItem={this.renderItem}
+          />
+        }
       </View>
     )
   }
@@ -94,5 +99,14 @@ const styles = StyleSheet.create({
   cardCount: {
     color: '#666',
     fontSize: 16
-  }
+  },
+  textContainer: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  noDecksText: {
+    color: 'grey',
+    fontSize: 20
+  },
 })
