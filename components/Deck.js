@@ -57,10 +57,12 @@ export default class Deck extends Component {
             onGoBack: this.onGoBack
            }
         )} />
-        <StartQuizBtn onPress={() => this.props.navigation.navigate(
-          'Quiz',
-          { deck }
-        )} />
+        {deck.cards.length > 0 &&
+          <StartQuizBtn onPress={() => this.props.navigation.navigate(
+            'Quiz',
+            { deck }
+          )} />
+        }
       </View>
     )
   }
