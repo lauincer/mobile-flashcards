@@ -14,15 +14,17 @@ const Tabs = TabNavigator({
   DeckList: {
     screen: DeckList,
     navigationOptions: {
-       tabBarLabel: 'DECKS',
-       tabBarIcon: ({ tintColor }) => <MaterialCommunityIcons name='cards' size={25} color={tintColor} />
+      title: 'Home',
+      tabBarLabel: 'DECKS',
+      tabBarIcon: ({ tintColor }) => <MaterialCommunityIcons name='cards' size={25} color={tintColor} />
     },
   },
   DeckCreate: {
     screen: DeckCreate,
     navigationOptions: {
-       tabBarLabel: 'NEW DECK',
-       tabBarIcon: ({ tintColor }) => <MaterialIcons name='library-add' size={25} color={tintColor} />
+      title: 'New Deck',
+      tabBarLabel: 'NEW DECK',
+      tabBarIcon: ({ tintColor }) => <MaterialIcons name='library-add' size={25} color={tintColor} />
     },
   },
 });
@@ -40,7 +42,7 @@ const MainNav = StackNavigator({
   Deck: {
     screen: Deck,
     navigationOptions: {
-      title: 'Deck'
+      title: ''
     }
   },
   CardCreate: {

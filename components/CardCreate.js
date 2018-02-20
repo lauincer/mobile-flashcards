@@ -19,11 +19,7 @@ export default class CardCreate extends Component {
 
     if (question && answer) {
       addCardToDeck(deck.title, card);
-
-      this.props.navigation.navigate(
-        'Deck',
-        { deck }
-      );
+      this.props.navigation.goBack();
     }
   }
 
