@@ -16,10 +16,16 @@ export default class DeckCreate extends Component {
 
   submit(deckName) {
     if (deckName) {
-      saveDeck(deckName);
-      this.props.navigation.navigate(
-        'DeckList'
-      );
+      saveDeck(deckName)
+        .then(() => {
+          this.setState({
+            deckName: ''
+          });
+
+          this.props.navigation.navigate(
+            'DeckList'
+          )
+        })
     }
   }
 

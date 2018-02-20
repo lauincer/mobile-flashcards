@@ -34,8 +34,17 @@ export default class DeckList extends Component {
 
   componentDidMount() {
     this.getDecks();
+
+    this._sub = this.props.navigation.addListener(
+      'didFocus',
+      this.getDecks
+    );
   }
 
+  componentWillUnmount() {
+    this._sub.remove();
+  }
+  
   getDecks = () => {
     getDecks().then((results) =>
       this.setState({
