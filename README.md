@@ -10,4 +10,4 @@ This project was bootstrapped with [Create React Native App](https://github.com/
 
 ### Platforms
 
-This project has been tested in the iOS simulator iPhone 6 9.3 and one Android device.
+This project has been tested in the iOS simulator iPhone and one Android device.
