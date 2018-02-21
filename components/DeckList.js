@@ -56,6 +56,7 @@ export default class DeckList extends Component {
           <FlatList
             data={decks}
             renderItem={this.renderItem}
+            keyExtractor={(item, index) => index}
           />
         }
       </View>
