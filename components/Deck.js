@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native'
 import { getDeck } from '../utils/api';
 
-function AddCardBtn ({ onPress }) {
+function AddCardButton ({ onPress }) {
   return (
     <TouchableOpacity
       style={[styles.btn, styles.addCardBtn]}
@@ -12,7 +12,7 @@ function AddCardBtn ({ onPress }) {
   )
 }
 
-function StartQuizBtn ({ onPress }) {
+function StartQuizButton ({ onPress }) {
   return (
     <TouchableOpacity
       style={[styles.btn, styles.startQuizBtn]}
@@ -50,7 +50,7 @@ export default class Deck extends Component {
             {deck.cards.length} Cards
           </Text>
         </View>
-        <AddCardBtn onPress={() => this.props.navigation.navigate(
+        <AddCardButton onPress={() => this.props.navigation.navigate(
           'CardCreate',
           {
             deck,
@@ -58,7 +58,7 @@ export default class Deck extends Component {
            }
         )} />
         {deck.cards.length > 0 &&
-          <StartQuizBtn onPress={() => this.props.navigation.navigate(
+          <StartQuizButton onPress={() => this.props.navigation.navigate(
             'Quiz',
             { deck }
           )} />
