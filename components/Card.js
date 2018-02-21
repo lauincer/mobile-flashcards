@@ -12,8 +12,13 @@ function ResponseButton ({ correct, onPress }) {
 }
 
 export default class Card extends Component {
+  state = {
+      showingAnswer: false
+  }
+
   render() {
-    const { card } = this.props;
+    const { card, onAnswerSelection } = this.props;
+    const { showingAnswer } = this.state;
 
     return (
       <View style={styles.questionContainer}>
@@ -21,12 +26,18 @@ export default class Card extends Component {
           <Text style={styles.questionText}>
             {card.question}
           </Text>
-          <Text style={styles.answer}>
-            Answer
-          </Text>
+          <TouchableOpacity>
+            <Text style={styles.questionAnswerBtn}>
+              {showingAnswer ? 'Question' : 'Answer' }
+            </Text>
+          </TouchableOpacity>
         </View>
-        <ResponseButton correct={true} />
-        <ResponseButton correct={false} />
+        <ResponseButton correct={true} onPress={() =>
+          onAnswerSelection(true)
+        } />
+        <ResponseButton correct={false} onPress={() =>
+          onAnswerSelection(false)
+        } />
       </View>
     )
   }
@@ -48,7 +59,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     width: 300
   },
-  answer: {
+  questionAnswerBtn: {
     color: 'red',
     fontWeight: 'bold',
     fontSize: 16
