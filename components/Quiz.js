@@ -96,7 +96,7 @@ const styles = StyleSheet.create({
     marginBottom: 20
   },
   cta: {
-    marginBottom: 10,
+    marginBottom: 15,
     color: 'blue',
     fontWeight: 'bold',
     fontSize: 16
