@@ -2,31 +2,6 @@ import React, { Component } from 'react'
 import { View, Text, FlatList, TouchableOpacity, StyleSheet } from 'react-native'
 import { getDecks } from '../utils/api';
 
-const stubDB = {
-  React: {
-    title: 'React',
-    questions: [
-      {
-        question: 'What is React?',
-        answer: 'A library for managing user interfaces'
-      },
-      {
-        question: 'Where do you make Ajax requests in React?',
-        answer: 'The componentDidMount lifecycle event'
-      }
-    ]
-  },
-  JavaScript: {
-    title: 'JavaScript',
-    questions: [
-      {
-        question: 'What is a closure?',
-        answer: 'The combination of a function and the lexical environment within which that function was declared.'
-      }
-    ]
-  }
-};
-
 export default class DeckList extends Component {
   state = {
     decks: []
@@ -44,7 +19,7 @@ export default class DeckList extends Component {
   componentWillUnmount() {
     this._sub.remove();
   }
-  
+
   getDecks = () => {
     getDecks().then((results) =>
       this.setState({
