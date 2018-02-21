@@ -1,16 +1,12 @@
 import React, { Component } from 'react'
 import { View, Text, StyleSheet } from 'react-native'
 import Card from './Card'
-// import {
-//   clearLocalNotification,
-//   setLocalNotification
-// } from './utils/helpers'
+import {
+  clearLocalNotification,
+  setLocalNotification
+} from './../utils/helpers';
 
 export default class Quiz extends Component {
-  // ToDo: Clear local notification
-  // clearLocalNotification()
-  //   .then(setLocalNotification)
-
   state = {
     cards: [],
     activeCardIndex: 0,
@@ -24,16 +20,18 @@ export default class Quiz extends Component {
     this.setState({
       cards: cards,
       activeCardIndex: 0,
-      score: 0,
-      questionsCompleted: 0
-    })
+      score: 0
+    });
+
+    // Clear local notification and create a new one for tomorrow
+    clearLocalNotification()
+      .then(setLocalNotification);
   }
 
   onAnswerSelection = (isCorrect) => {
     this.setState({
       activeCardIndex: this.state.activeCardIndex + 1,
-      score: isCorrect ? this.state.score + 1 : this.state.score,
-      questionsCompleted: this.state.questionsCompleted + 1,
+      score: isCorrect ? this.state.score + 1 : this.state.score
     });
   }
 
@@ -45,12 +43,16 @@ export default class Quiz extends Component {
     return (
       <View style={styles.container}>
         {showCard &&
-          <Card card={cards[activeCardIndex]} onAnswerSelection={this.onAnswerSelection} />
+          <View>
+            <Text style={styles.quizProgress}>
+              {activeCardIndex + 1} / {cards.length}
+            </Text>
+            <Card card={cards[activeCardIndex]} onAnswerSelection={this.onAnswerSelection} />
+          </View>
         }
         {showScore &&
-          <View>
-            <Text>Score:</Text>
-            <Text>{score}</Text>
+          <View style={styles.score}>
+            <Text style={styles.scoreText}>Score: {score} / {cards.length}</Text>
           </View>
         }
       </View>
@@ -61,5 +63,18 @@ export default class Quiz extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1
+  },
+  quizProgress: {
+    fontSize: 16,
+    padding: 15
+  },
+  score: {
+    flex: 1,
+    marginBottom: 10,
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  scoreText: {
+    fontSize: 30,
   }
 })

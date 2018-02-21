@@ -16,6 +16,20 @@ export default class Card extends Component {
       showingAnswer: false
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (this.state.card !== nextProps.card) {
+      this.setState({
+        showingAnswer: false
+      });
+    }
+  }
+
+  flipCard = () => {
+    this.setState({
+      showingAnswer: !this.state.showingAnswer
+    })
+  }
+
   render() {
     const { card, onAnswerSelection } = this.props;
     const { showingAnswer } = this.state;
@@ -23,10 +37,10 @@ export default class Card extends Component {
     return (
       <View style={styles.questionContainer}>
         <View style={styles.question}>
-          <Text style={styles.questionText}>
-            {card.question}
+          <Text style={styles.questionAnswerText}>
+            {showingAnswer ? card.answer : card.question }
           </Text>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={() => this.flipCard() }>
             <Text style={styles.questionAnswerBtn}>
               {showingAnswer ? 'Question' : 'Answer' }
             </Text>
@@ -53,7 +67,7 @@ const styles = StyleSheet.create({
     paddingTop: 50,
     paddingBottom: 150
   },
-  questionText: {
+  questionAnswerText: {
     fontSize: 30,
     marginBottom: 10,
     textAlign: 'center',
