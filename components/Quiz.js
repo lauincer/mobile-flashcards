@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, Text, StyleSheet } from 'react-native'
+import { View, Text, TouchableOpacity, StyleSheet } from 'react-native'
 import Card from './Card'
 import {
   clearLocalNotification,
@@ -15,10 +15,11 @@ export default class Quiz extends Component {
   }
 
   componentDidMount() {
-    const cards = this.props.navigation.state.params.deck.cards;
+    const deck = this.props.navigation.state.params.deck;
 
     this.setState({
-      cards: cards,
+      deck: deck,
+      cards: deck.cards,
       activeCardIndex: 0,
       score: 0
     });
@@ -35,8 +36,16 @@ export default class Quiz extends Component {
     });
   }
 
+  restartQuiz = () => {
+    this.setState({
+      activeCardIndex: 0,
+      score: 0,
+      questionsCompleted: 0
+    });
+  }
+
   render() {
-    const { cards, activeCardIndex, score } = this.state;
+    const { deck, cards, activeCardIndex, score } = this.state;
     const showScore = activeCardIndex === cards.length;
     const showCard = cards && cards.length && !showScore;
 
@@ -51,8 +60,18 @@ export default class Quiz extends Component {
           </View>
         }
         {showScore &&
-          <View style={styles.score}>
-            <Text style={styles.scoreText}>Score: {score} / {cards.length}</Text>
+          <View style={styles.scoreContainer}>
+            <View style={styles.score}>
+              <Text style={styles.scoreText}>Score: {score} / {cards.length}</Text>
+            </View>
+            <TouchableOpacity onPress={() => this.restartQuiz()}>
+              <Text style={styles.cta}>Restart Quiz</Text>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() =>
+              this.props.navigation.goBack()
+            }>
+              <Text style={styles.cta}>Back to Deck</Text>
+            </TouchableOpacity>
           </View>
         }
       </View>
@@ -68,11 +87,19 @@ const styles = StyleSheet.create({
     fontSize: 16,
     padding: 15
   },
-  score: {
+  scoreContainer: {
     flex: 1,
-    marginBottom: 10,
     alignItems: 'center',
     justifyContent: 'center'
+  },
+  score: {
+    marginBottom: 20
+  },
+  cta: {
+    marginBottom: 10,
+    color: 'blue',
+    fontWeight: 'bold',
+    fontSize: 16
   },
   scoreText: {
     fontSize: 30,
