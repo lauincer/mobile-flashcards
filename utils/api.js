@@ -39,6 +39,7 @@ export function saveDeck(title) {
             AsyncStorage.setItem(DECKS_STORAGE_KEY, JSON.stringify([newDeck]))
         }
 
+        return newDeck;
     })
     .catch((err) => console.log(err))
 }
