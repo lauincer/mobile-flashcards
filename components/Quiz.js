@@ -51,7 +51,7 @@ export default class Quiz extends Component {
 
     return (
       <View style={styles.container}>
-        {showCard &&
+        {!!showCard &&
           <View>
             <Text style={styles.quizProgress}>
               {activeCardIndex + 1} / {cards.length}
@@ -59,7 +59,7 @@ export default class Quiz extends Component {
             <Card card={cards[activeCardIndex]} onAnswerSelection={this.onAnswerSelection} />
           </View>
         }
-        {showScore &&
+        {!!showScore &&
           <View style={styles.scoreContainer}>
             <View style={styles.score}>
               <Text style={styles.scoreText}>Score: {score} / {cards.length}</Text>
